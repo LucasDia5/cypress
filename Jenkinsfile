@@ -5,10 +5,18 @@ pipeline {
         nodejs "NodeJs22" // <- o nome que você deu na configuração global
             }       
  
-    stages {
-        stage('Checkout') {
+        stages {
+            stage('Checkout') {
+                steps {
+                    checkout scm
+                }
+            }
+        
+        stage('Build') {
             steps {
-                checkout scm
+                nodejs(nodeJSInstallationName: 'Node 22.x', configId: '<config-file-provider-id>') {
+                    sh 'npm config ls'
+                }
             }
         }
 
