@@ -2,7 +2,7 @@ pipeline {
     agent any
 
         tools {
-        nodejs "NodeJs22" // <- o nome que você deu na configuração global
+        nodejs "NodeJs 22.x" // <- o nome que você deu na configuração global
             }       
  
         stages {
