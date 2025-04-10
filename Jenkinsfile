@@ -2,7 +2,7 @@ pipeline {
     agent any
 
         tools {
-        nodejs "NodeJs 22.x" // <- o nome que você deu na configuração global
+        nodejs "Node 22.x" // <- o nome que você deu na configuração global
             }       
  
         stages {
@@ -12,6 +12,12 @@ pipeline {
                 }
             }
         
+            stage('Check Node Version') {
+                steps {
+                    sh 'node -v && npm -v'
+                 }
+            }
+
         stage('Build') {
             steps {
                 nodejs(nodeJSInstallationName: 'Node 22.x', configId: '<config-file-provider-id>') {
