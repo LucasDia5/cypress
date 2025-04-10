@@ -15,6 +15,12 @@ pipeline {
             }
         }
 
+        stage('Install Cypress binary') {
+            steps {
+                 sh 'npx cypress install'
+            }
+        }
+
         stage('Run Cypress Tests') {
             steps {
                 sh 'npx cypress run --reporter mochawesome' 
