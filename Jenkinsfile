@@ -1,9 +1,5 @@
 pipeline {
-    agent any
-
-         tools {
-         nodejs 'Node 18' // <- o nome que você deu na configuração global
-          }       
+    agent any   
  
          stages {
              stage('Checkout') {
