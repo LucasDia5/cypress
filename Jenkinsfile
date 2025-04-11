@@ -14,14 +14,7 @@ pipeline {
                   }
              }
  
-         stage('Build') {
-             steps {
-                 nodejs(nodeJSInstallationName: 'Node 18', configId: '<config-file-provider-id>') {
-                     sh 'npm config ls'
-                 }
-             }
-         }
- 
+          
          stage('Install dependencies') {
              steps {
                  sh 'npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator'
