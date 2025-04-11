@@ -6,7 +6,7 @@ pipeline {
     }
 
  
-         stages {
+        stages {
              stage('Checkout') {
                  steps {
                      checkout scm
@@ -19,9 +19,10 @@ pipeline {
                   }
              }
 
-              stage('Instalar Dependências') {
-            steps {
+            stage('Instalar Dependências') {
+                steps {
                 sh 'npm install'
+            }
             }
  
           
@@ -50,5 +51,6 @@ pipeline {
              archiveArtifacts artifacts: 'cypress/screenshots/**/*.png', allowEmptyArchive: true
              archiveArtifacts artifacts: 'cypress/videos/**/*.mp4', allowEmptyArchive: true
          }
-     }
-}}
+     }  
+}
+
