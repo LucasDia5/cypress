@@ -1,10 +1,8 @@
 pipeline {
     agent any
 
-       agent any
- 
          tools {
-         nodejs "Node 18" // <- o nome que você deu na configuração global
+         nodejs 'Node 18' // <- o nome que você deu na configuração global
           }       
  
          stages {
