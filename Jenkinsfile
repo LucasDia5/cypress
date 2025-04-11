@@ -22,7 +22,7 @@ pipeline {
  
          stage('Build') {
              steps {
-                 nodejs(nodeJSInstallationName: 'Node 22.x', configId: '<config-file-provider-id>') {
+                 nodejs(nodeJSInstallationName: 'Node 18', configId: '<config-file-provider-id>') {
                      sh 'npm config ls'
                  }
              }
