@@ -1,51 +1,52 @@
 pipeline {
     agent any
 
-        tools {
-        nodejs "node22" // <- o nome que você deu na configuração global
-            }       
- 
-        stages {
-            stage('Checkout') {
-                steps {
-                    checkout scm
-                }
-            }
-        
-            stage('Check Node Version') {
-                steps {
-                    sh 'node -v && npm -v'
-                 }
-            }
+        environment {
+        // Caminho padrão do NVM
+        NVM_DIR = "${HOME}/.nvm"
+    }
 
-        stage('Build') {
+    stages {
+        stage('Preparar ambiente Node.js') {
             steps {
-                nodejs(nodeJSInstallationName: 'Node 22.x', configId: '<config-file-provider-id>') {
-                    sh 'npm config ls'
-                }
+                sh '''
+                    # Carrega o NVM e usa a versão desejada
+                    export NVM_DIR="$HOME/.nvm"
+                    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+                    nvm install 18
+                    nvm use 18
+                    node -v
+                    npm -v
+                '''
             }
         }
 
-        stage('Install dependencies') {
+        stage('Instalar dependências') {
             steps {
-                sh 'npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator'
+                sh '''
+                    export NVM_DIR="$HOME/.nvm"
+                    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+                    nvm use 18
 
+                    npm ci
+                '''
             }
         }
 
-        stage('Install Cypress binary') {
+        stage('Rodar testes com Cypress') {
             steps {
-                 sh 'npx cypress install'
-            }
-        }
+                sh '''
+                    export NVM_DIR="$HOME/.nvm"
+                    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+                    nvm use 18
 
-        stage('Run Cypress Tests') {
-            steps {
-                sh 'npx cypress run --reporter mochawesome' 
+                    npx cypress run
+                '''
             }
         }
     }
-
+    
     post {
         always {
             archiveArtifacts artifacts: 'cypress/screenshots/**/*.png', allowEmptyArchive: true
