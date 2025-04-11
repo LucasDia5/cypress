@@ -1,5 +1,10 @@
 pipeline {
     agent any   
+
+    tools {
+        nodejs 'Node 22' // O nome que você configurou no Jenkins
+    }
+
  
          stages {
              stage('Checkout') {
@@ -13,11 +18,16 @@ pipeline {
                      sh 'node -v && npm -v'
                   }
              }
+
+              stage('Instalar Dependências') {
+            steps {
+                sh 'npm install'
+            }
  
           
          stage('Install dependencies') {
              steps {
-                 sh 'npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator'
+                 sh 'npm install cypress --save-dev mochawesome mochawesome-merge mochawesome-report-generator'
  
              }
          }
