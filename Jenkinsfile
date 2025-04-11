@@ -29,7 +29,8 @@ pipeline {
                     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
                     nvm use 18
 
-                    npm ci
+                    npm ci || npm install
+                    npx cypress install
                 '''
             }
         }
