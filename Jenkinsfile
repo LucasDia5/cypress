@@ -19,7 +19,7 @@ pipeline {
 
         stage('Run Cypress Tests') {
             steps {
-                sh 'cypress run  --browser chrome --headed --no-sandbox'
+                sh 'cypress run  --browser chrome --headed'
             }
         }
     }
