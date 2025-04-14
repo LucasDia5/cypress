@@ -35,11 +35,11 @@ pipeline {
              }
          }
  
-         /*stage('Install Cypress binary') {
+        *stage('Install Cypress binary') {
              steps {
                   sh 'npx cypress install'
              }
-         }*/
+         }
  
          stage('Run Cypress Tests') {
              steps {
