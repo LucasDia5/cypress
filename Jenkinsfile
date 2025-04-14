@@ -21,23 +21,23 @@ pipeline {
 
             stage('Instalar Dependências') {
                 steps {
-                sh 'npm install'
+                sh 'npm init -y'
             }
             }
  
           
-         stage('Install dependencies') {
+         stage('Install cypress') {
              steps {
                  sh 'npm install cypress --save-dev mochawesome mochawesome-merge mochawesome-report-generator'
  
              }
          }
  
-         stage('Install Cypress binary') {
+         /*stage('Install Cypress binary') {
              steps {
                   sh 'npx cypress install'
              }
-         }
+         }*/
  
          stage('Run Cypress Tests') {
              steps {
