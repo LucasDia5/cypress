@@ -1,9 +1,9 @@
 pipeline {
     agent any   
 
-    tools {
+    /*tools {
         nodejs 'Node 22' // O nome que você configurou no Jenkins
-    }
+    }*/
 
  
         stages {
