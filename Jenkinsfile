@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'cypress/included:13.6.4'
+            image 'cypress/included:14.3.0'
             args '-u root'
         }
     }
