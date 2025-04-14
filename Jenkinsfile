@@ -2,7 +2,7 @@ pipeline {
     agent any   
 
     tools {
-        nodejs 'Node 22' // O nome que você configurou no Jenkins
+        nodejs 'Node 21' // O nome que você configurou no Jenkins
     }
 
  
