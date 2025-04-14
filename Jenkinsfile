@@ -43,7 +43,7 @@ pipeline {
  
          stage('Run Cypress Tests') {
              steps {
-                 sh 'npx cypress run --reporter mochawesome' 
+                 sh 'npx cypress run' 
              }
          }
      }
