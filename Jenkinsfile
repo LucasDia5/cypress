@@ -28,7 +28,7 @@ pipeline {
           
          stage('Install cypress') {
              steps {
-                 sh 'npm install cypress --save-dev mochawesome mochawesome-merge mochawesome-report-generator'
+                 sh 'npm install cypress --save-dev'
  
              }
          }
