@@ -1,9 +1,9 @@
 pipeline {
     agent any   
 
-    /*tools {
+    tools {
         nodejs 'Node 22' // O nome que você configurou no Jenkins
-    }*/
+    }
 
  
         stages {
@@ -21,9 +21,9 @@ pipeline {
 
             stage('Instalar Dependências') {
                 steps {
-                                    sh 'rm -rf node_modules package-lock.json'
+                sh 'rm -rf node_modules package-lock.json'
                 sh 'npm cache clean --force'
-                sh 'npm init -y'
+                sh 'npm install'
             }
             }
  
