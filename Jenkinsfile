@@ -21,6 +21,8 @@ pipeline {
 
             stage('Instalar Dependências') {
                 steps {
+                                    sh 'rm -rf node_modules package-lock.json'
+                sh 'npm cache clean --force'
                 sh 'npm init -y'
             }
             }
@@ -28,7 +30,7 @@ pipeline {
           
          stage('Install cypress') {
              steps {
-                 sh 'npm install cypress --save-dev'
+                sh 'npm install cypress --save-dev'
  
              }
          }
