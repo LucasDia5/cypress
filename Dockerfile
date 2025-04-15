@@ -6,6 +6,8 @@ WORKDIR /app
 # Copiar arquivos para o container
 COPY package*.json ./
 RUN npm install
+RUN npx cypress install
+
 
 COPY . .
 
