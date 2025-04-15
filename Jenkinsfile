@@ -1,7 +1,8 @@
 pipeline {
     agent {
         dockerfile {
-            image 'cypress/included:14.3.0'
+            filename 'Dockerfile'
+            dir '.'
             args '--entrypoint=""'
         }
     }
