@@ -5,8 +5,7 @@ pipeline {
             args '--entrypoint=""'
         }
         }
-    }
-
+    
     stages {
         stage('Rodar testes') {
             steps {
