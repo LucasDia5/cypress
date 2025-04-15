@@ -1,25 +1,15 @@
 pipeline {
     agent {
-        docker {
-            image 'cypress/included:14.3.0'
-            args '-u root'
+        dockerfile {
+            filename 'Dockerfile'
+            dir '.'
         }
-    }
-
-    environment {
-        HOME = '/tmp' // evita erros com cache
     }
 
     stages {
-        stage('Checkout') {
+        stage('Rodar testes') {
             steps {
-                checkout scm
-            }
-        }
-
-        stage('Run Cypress Tests') {
-            steps {
-                sh 'cypress run  --browser chrome --headed'
+                sh 'npm test'
             }
         }
     }
