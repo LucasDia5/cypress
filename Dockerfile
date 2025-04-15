@@ -1,28 +1,19 @@
-FROM node:20
+FROM cypress/included:14.3.0
 
-# Criar diretório de trabalho
 WORKDIR /app
 
-# Copiar arquivos para o container
-COPY package*.json ./
+# Copia o package.json primeiro pra instalar dependências
+COPY package.json .
+COPY package-lock.json .
+
+# Instala todas as dependências, inclusive o Cypress
 RUN npm install
+
+# Agora o Cypress está no node_modules, podemos instalar o binário
 RUN npx cypress install
 
-
+# Copia o resto do projeto
 COPY . .
 
-# Instalar dependências do sistema pro Cypress
-RUN apt-get update && apt-get install -y \
-    libgtk2.0-0 \
-    libgtk-3-0 \
-    libgbm-dev \
-    libnotify-dev \
-    libgconf-2-4 \
-    libnss3 \
-    libxss1 \
-    libasound2 \
-    xvfb \
-    && rm -rf /var/lib/apt/lists/*
-
-# Rodar os testes automaticamente quando subir o container
-CMD ["npm", "test"]
+# Comando final para rodar os testes
+CMD ["npx", "cypress", "run"]
