@@ -1,19 +1,12 @@
 FROM cypress/included:14.3.0
 
-WORKDIR /app
+WORKDIR /e2e
 
-# Copia o package.json primeiro pra instalar dependências
-COPY package.json .
-COPY package-lock.json .
-
-# Instala todas as dependências, inclusive o Cypress
-RUN npm install
-
-# Agora o Cypress está no node_modules, podemos instalar o binário
-RUN npx cypress install
-
-# Copia o resto do projeto
+# Copia os arquivos do projeto para dentro do container
 COPY . .
 
-# Comando final para rodar os testes
+# Garante que as dependências estejam instaladas (caso precise)
+RUN npm ci || npm install
+
+# Comando final que roda os testes
 CMD ["npx", "cypress", "run"]
