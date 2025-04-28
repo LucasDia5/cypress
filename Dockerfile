@@ -1,12 +1,15 @@
 FROM cypress/included:14.3.0
 
+USER root
+
+RUN apt-get update && \
+    apt-get install -y xvfb xauth && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /e2e
 
-# Copia os arquivos do projeto para dentro do container
 COPY . .
 
-# Garante que as dependências estejam instaladas (caso precise)
 RUN npm ci || npm install
 
-# Comando final que roda os testes
 CMD ["npx", "cypress", "run"]
