@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Rodar testes') {
             steps {
-                sh 'xvfb-run -a npx cypress run'
+                sh 'npx cypress run --browser electron'
             }
         }
     }
