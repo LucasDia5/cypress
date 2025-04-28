@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Rodar testes') {
             steps {
-                sh 'sh 'xvfb-run -a npx cypress run'
+                sh 'xvfb-run -a npx cypress run'
             }
         }
     }
